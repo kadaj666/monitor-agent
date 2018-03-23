@@ -6,7 +6,7 @@ info:
   title: "NodeAgent"
   contact:
     email: "kadajgen@gmail.com"
-host: "10.42.216.77:9000"
+host: "127.0.0.1:9000"
 basePath: "/"
 tags:
 - name: "agent"
