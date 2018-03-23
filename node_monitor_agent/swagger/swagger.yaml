@@ -1,0 +1,315 @@
+---
+swagger: "2.0"
+info:
+  description: "API for server monitoring"
+  version: "1.0.0"
+  title: "NodeAgent"
+  contact:
+    email: "kadajgen@gmail.com"
+host: "10.42.216.77:9000"
+basePath: "/"
+tags:
+- name: "agent"
+  description: "Check agent status"
+- name: "os"
+  description: "Check OS status"
+- name: "hardware"
+  description: "hardware status"
+- name: "services"
+  description: "Operations with services"
+- name: "coins"
+  description: "Coins operations"
+schemes:
+- "http"
+security:
+- APIKeyHeader: []
+paths:
+  /:
+    get:
+      tags:
+      - "agent"
+      summary: "Check ping"
+      description: "check if agent are available"
+      operationId: "root_get"
+      parameters: []
+      responses:
+        200:
+          description: "return ok status."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.agent_controller"
+  /key:
+    get:
+      tags:
+      - "agent"
+      summary: "Check key"
+      description: "check if agent key coincide"
+      operationId: "key_get"
+      parameters: []
+      responses:
+        200:
+          description: "return agent version."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.agent_controller"
+  /agent:
+    get:
+      tags:
+      - "agent"
+      summary: "Check version"
+      description: "check current agent version"
+      operationId: "agent_get"
+      parameters: []
+      responses:
+        200:
+          description: "return agent version."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.agent_controller"
+  /hostname:
+    get:
+      tags:
+      - "os"
+      summary: "Check hostname"
+      description: "return current hostname for node"
+      operationId: "hostname_get"
+      parameters: []
+      responses:
+        200:
+          description: "return hostname ."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.os_controller"
+  /distr:
+    get:
+      tags:
+      - "os"
+      summary: "Check distribution type"
+      description: "return node distribution name, id and version"
+      operationId: "distr_get"
+      parameters: []
+      responses:
+        200:
+          description: "return dist info ."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.os_controller"
+  /python:
+    get:
+      tags:
+      - "os"
+      summary: "Check python version"
+      description: "return installed python version"
+      operationId: "python_get"
+      parameters: []
+      responses:
+        200:
+          description: "return python version ."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.os_controller"
+  /la:
+    get:
+      tags:
+      - "os"
+      summary: "check LA value"
+      description: "return node load average"
+      operationId: "la_get"
+      parameters: []
+      responses:
+        200:
+          description: "return la value ."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.os_controller"
+  /boot_time:
+    get:
+      tags:
+      - "os"
+      summary: "check node boot time"
+      description: "return boot time value in human readable"
+      operationId: "boot_time_get"
+      parameters: []
+      responses:
+        200:
+          description: "return HR boot time ."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.os_controller"
+  /top5mem:
+    get:
+      tags:
+      - "os"
+      summary: "Check top 5 process by mem "
+      description: "Top 5 processes consuming memory"
+      operationId: "top5mem_get"
+      parameters: []
+      responses:
+        200:
+          description: "return process pid, name, consume."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.os_controller"
+  /top5cpu:
+    get:
+      tags:
+      - "os"
+      summary: "Check top 5 process by cpu "
+      description: "Top 5 processes consuming cpu"
+      operationId: "top5cpu_get"
+      parameters: []
+      responses:
+        200:
+          description: "return process pid, name, consume."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.os_controller"
+  /cpu/{detail}:
+    get:
+      tags:
+      - "hardware"
+      summary: "check cpu information"
+      description: "Return to the client available cpu information"
+      operationId: "cpu_detail_get"
+      parameters:
+      - name: "detail"
+        in: "path"
+        description: "ID of the required group"
+        required: true
+        type: "string"
+        enum:
+        - "info"
+        - "cpu_times"
+        - "cpu_percent"
+        - "cpu_percent_total"
+        - "cpu_stats"
+        - "cpu_freq"
+      responses:
+        200:
+          description: "return JSON answer."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.hardware_controller"
+  /disk/{detail}:
+    get:
+      tags:
+      - "hardware"
+      summary: "check cpu information"
+      description: "Return to the client available cpu information"
+      operationId: "disk_detail_get"
+      parameters:
+      - name: "detail"
+        in: "path"
+        description: "ID of the required group"
+        required: true
+        type: "string"
+        enum:
+        - "partitions"
+        - "disk_io_counters"
+        - "disk_rw"
+      responses:
+        200:
+          description: "return JSON answer."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.hardware_controller"
+  /mem/{detail}:
+    get:
+      tags:
+      - "hardware"
+      summary: "check cpu information"
+      description: "Return to the client available cpu information"
+      operationId: "mem_detail_get"
+      parameters:
+      - name: "detail"
+        in: "path"
+        description: "ID of the required group"
+        required: true
+        type: "string"
+        enum:
+        - "virtual"
+        - "swap"
+      responses:
+        200:
+          description: "return JSON answer."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.hardware_controller"
+  /net/{detail}:
+    get:
+      tags:
+      - "hardware"
+      summary: "check cpu information"
+      description: "Return to the client available cpu information"
+      operationId: "net_detail_get"
+      parameters:
+      - name: "detail"
+        in: "path"
+        description: "ID of the required group"
+        required: true
+        type: "string"
+        enum:
+        - "addr"
+        - "counters"
+      responses:
+        200:
+          description: "return JSON answer."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.hardware_controller"
+  /service/{service}:
+    get:
+      tags:
+      - "services"
+      summary: "check service status"
+      description: "Check service status"
+      operationId: "service_service_get"
+      parameters:
+      - name: "service"
+        in: "path"
+        description: "service name"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "return 0 or 1 status for up or down."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.services_controller"
+  /service/{service}/{call}:
+    get:
+      tags:
+      - "services"
+      summary: "check service status"
+      description: "Check service status"
+      operationId: "service_service_call_get"
+      parameters:
+      - name: "service"
+        in: "path"
+        description: "service name"
+        required: true
+        type: "string"
+      - name: "call"
+        in: "path"
+        description: "send remote command to service"
+        required: true
+        type: "string"
+        enum:
+        - "start"
+        - "stop"
+        - "restart"
+        - "kill nice"
+        - "force kill"
+      responses:
+        200:
+          description: "return 0 or 1 status for success or fail."
+        500:
+          description: "return error"
+      deprecated: true
+      x-swagger-router-controller: "node_monitor_agent.controllers.services_controller"
+securityDefinitions:
+  APIKeyHeader:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions: {}
