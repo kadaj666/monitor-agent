@@ -22,4 +22,4 @@ run:
 test:
   type: test
   script:
-    - curl -X GET --header 'Accept: application/json' --header 'api_key: 111' 'http://127.0.0.1:9001/boot_time'
+    - "curl -X GET --header 'Accept: application/json' --header 'api_key: 111' 'http://127.0.0.1:9000/boot_time'"
