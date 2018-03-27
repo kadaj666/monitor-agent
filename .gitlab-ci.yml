@@ -5,12 +5,10 @@ before_script:                                  # Print out python version for d
     - pip3 install -r requirements.txt
 
 stages:
-  - ubuntu14
-  - ubuntu16
-  - python3
+  - test
 
 ubuntu14:
-  stage: ubuntu14
+  stage: test
   image: ubuntu:14.04  
   script:
     - python3 -m node_monitor_agent &
@@ -18,7 +16,7 @@ ubuntu14:
     - ./test.sh
 
 ubuntu16:
-  stage: ubuntu16
+  stage: test
   image: ubuntu:16.04  
   script:
     - python3 -m node_monitor_agent &
@@ -26,7 +24,7 @@ ubuntu16:
     - ./test.sh
 
 python3:
-  stage: python3
+  stage: test
   image: python:3 
   script:
     - python3 -m node_monitor_agent &
