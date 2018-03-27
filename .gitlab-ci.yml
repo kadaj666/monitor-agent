@@ -7,7 +7,6 @@ before_script:                                  # Print out python version for d
 stages:
   - ubuntu14
   - ubuntu16
-  - centos
   - python3
 
 ubuntu14:
@@ -21,14 +20,6 @@ ubuntu14:
 ubuntu16:
   stage: ubuntu16
   image: ubuntu:16.04  
-  script:
-    - python3 -m node_monitor_agent &
-    - sleep 5
-    - ./test.sh
-
-centos:
-  stage: centos
-  image: centos:7 
   script:
     - python3 -m node_monitor_agent &
     - sleep 5
