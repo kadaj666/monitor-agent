@@ -1,19 +1,21 @@
 image: python:3.6
 
 stages:
+  - build
   - test
 
 build:
-  stage: test
+  stage: build
   script:
     - python -V                                   # Print out python version for debugging
     - apt-get update -q -y
     - apt-get install curl -y
     - pip3 install -r requirements.txt
     - python3 -m node_monitor_agent &
+    - sleep 5
 
 testing:
   stage: test
   script:
     - ./test.sh
- 
+  when: on_success
