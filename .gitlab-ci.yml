@@ -4,15 +4,16 @@ stages:
   - test
 
 build:
-  type: test
+  stage: test
   script:
     - python -V                                   # Print out python version for debugging
     - apt-get update -q -y
     - apt-get install curl -y
     - pip3 install -r requirements.txt
     - python3 -m node_monitor_agent &
-    - sleep 5
-    - ./test.sh
-    
 
+testing:
+  stage: test
+  script:
+    - ./test.sh
  
