@@ -1,0 +1,11 @@
+image: python:3.6
+
+before_script:
+  - python -V                                   # Print out python version for debugging
+  - apt-get update -q -y
+  - pip install -r requirements.txt
+
+test:
+  script:
+  - python3 -m node_monitor_agent
+ 
