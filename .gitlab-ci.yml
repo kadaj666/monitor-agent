@@ -1,15 +1,39 @@
-image: python:3.6
-
-stages:
-  - test
-
-build:
-  stage: test
-  before_script:
+before_script:
     - python -V                                   # Print out python version for debugging
     - apt-get update -q -y
-    - apt-get install curl -y
-    - pip3 install -r requirements.txt 
+    - apt-get install curl python3 python3-pip -y
+    - pip3 install -r requirements.txt
+
+stages:
+  - ubuntu14
+  - ubuntu16
+  - centos
+  - python3
+
+ubuntu14:
+  image: ubuntu:14.04  
   script:
     - python3 -m node_monitor_agent &
+    - sleep 5
+    - ./test.sh
+
+ubuntu16:
+  image: ubuntu:16.04  
+  script:
+    - python3 -m node_monitor_agent &
+    - sleep 5
+    - ./test.sh
+
+centos:
+  image: centos:7 
+  script:
+    - python3 -m node_monitor_agent &
+    - sleep 5
+    - ./test.sh
+
+python3:
+  image: python:3 
+  script:
+    - python3 -m node_monitor_agent &
+    - sleep 5
     - ./test.sh
