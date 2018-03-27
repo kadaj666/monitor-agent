@@ -12,6 +12,7 @@ build:
     - pip3 install -r requirements.txt
     - python3 -m node_monitor_agent &
     - sleep 5
-    - "curl -X GET --header 'Accept: application/json' --header 'api_key: 111' 'http://127.0.0.1:9000/boot_time'"
+    - ./test.sh
+    
 
  
