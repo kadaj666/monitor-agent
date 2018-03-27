@@ -1,7 +1,7 @@
-before_script:
-    - python -V                                   # Print out python version for debugging
+before_script:                                  # Print out python version for debugging
     - apt-get update -q -y
     - apt-get install curl python3 python3-pip -y
+    - python3 -V 
     - pip3 install -r requirements.txt
 
 stages:
