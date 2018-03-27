@@ -11,6 +11,7 @@ stages:
   - python3
 
 ubuntu14:
+  stage: ubuntu14
   image: ubuntu:14.04  
   script:
     - python3 -m node_monitor_agent &
@@ -18,6 +19,7 @@ ubuntu14:
     - ./test.sh
 
 ubuntu16:
+  stage: ubuntu16
   image: ubuntu:16.04  
   script:
     - python3 -m node_monitor_agent &
@@ -25,6 +27,7 @@ ubuntu16:
     - ./test.sh
 
 centos:
+  stage: centos
   image: centos:7 
   script:
     - python3 -m node_monitor_agent &
@@ -32,6 +35,7 @@ centos:
     - ./test.sh
 
 python3:
+  stage: python3
   image: python:3 
   script:
     - python3 -m node_monitor_agent &
