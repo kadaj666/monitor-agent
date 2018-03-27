@@ -11,20 +11,15 @@ build:
   script:
     - python -V                                   # Print out python version for debugging
     - apt-get update -q -y
-    - pip3 install -r requirements.txt
-    - python3 -m node_monitor_agent
-
- 
-test:
-  type: test
-  script:
-    - apt-get update -q -y
     - apt-get install -y curl
-    - "curl -X GET --header 'Accept: application/json' --header 'api_key: 111' 'http://127.0.0.1:9000/boot_time'"
+    - pip3 install -r requirements.txt
 
 run:
   type: run
   script:
-    - apt-get update -q -y
-    - apt-get install -y curl
-    - "curl -X GET --header 'Accept: application/json' --header 'api_key: 111' 'http://build:9000/boot_time'"
+  - python3 -m node_monitor_agent
+ 
+test:
+  type: test
+  script:
+    - curl -X GET --header 'Accept: application/json' --header 'api_key: 111' 'http://127.0.0.1:9001/boot_time'
