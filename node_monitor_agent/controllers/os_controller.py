@@ -68,4 +68,4 @@ def ports_get():
     for c in psutil.net_connections(kind='inet'):
         laddr = "%s %s" % (c.laddr)
         data.append(laddr.split()[1])
-    return data
+    return list(set(data))
