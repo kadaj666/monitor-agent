@@ -87,3 +87,7 @@ printf '%.0s-' {1..20}; echo
 echo "/net/counters"
 curl -sS -X GET -H "api_key: 111" "http://127.0.0.1:9000/net/counters"
 printf '%.0s-' {1..20}; echo
+
+echo "/os/ports"
+curl -sS -X GET -H "api_key: 111" "http://127.0.0.1:9000/os/ports"
+printf '%.0s-' {1..20}; echo

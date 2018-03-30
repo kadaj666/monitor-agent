@@ -136,6 +136,20 @@ paths:
         500:
           description: "return error"
       x-swagger-router-controller: "node_monitor_agent.controllers.os_controller"
+  /ports:
+    get:
+      tags:
+      - "os"
+      summary: "check node open ports"
+      description: "return open ports on node"
+      operationId: "ports_get"
+      parameters: []
+      responses:
+        200:
+          description: "return HR boot time ."
+        500:
+          description: "return error"
+      x-swagger-router-controller: "node_monitor_agent.controllers.os_controller"
   /top5mem:
     get:
       tags:
