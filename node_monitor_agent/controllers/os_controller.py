@@ -61,10 +61,11 @@ def top5mem_get():  # noqa: E501
     return top_mem
 
 def ports_get():
+    data = []
     key = util.key()
     if key == 401:
         return 'Invalid key', 401
     for c in psutil.net_connections(kind='inet'):
         laddr = "%s %s" % (c.laddr)
-       
-        return(laddr.split()[1])
+        data.append(laddr.split()[1])
+    return data
