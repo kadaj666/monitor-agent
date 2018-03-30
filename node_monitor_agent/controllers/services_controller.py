@@ -16,7 +16,7 @@ def service_service_call_get(service, call):  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
+    return 'darova nah'
 
 
 def service_service_get(service):  # noqa: E501
