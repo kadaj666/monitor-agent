@@ -9,7 +9,7 @@ Python3 and modules from requirements.txt
 ### Start API
 
 ```
-python3 -m monitor-agent
+python3 -m node_monitor_agent
 ```
 
 ### Hints
