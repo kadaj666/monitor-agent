@@ -6,6 +6,10 @@ API for getting metrics from your server
 
 Python3 and modules from requirements.txt
 
+```
+pip3 install -r requirements.txt
+```
+
 ### Start API
 
 ```
